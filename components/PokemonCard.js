@@ -60,7 +60,7 @@ class PokemonCard extends React.Component {
 		if (this.state.caughtOrRan === false) {
 			buttons = (
 				<>
-					<ul className='flex gap-8 mt-4 flex-col lg:flex-row'>
+					<ul className='flex gap-8 mt-4 lg:flex-row md:flex-col flex-row'>
 						<li>
 							<button className='py-4 px-4 rounded-md bg-orange-100 hover:bg-orange-200 active:bg-orange-300' onClick={this.attack}>
 								Attack
