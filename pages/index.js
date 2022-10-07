@@ -76,7 +76,7 @@ class Home extends React.Component {
 		const pokemonList = this.state.pokemons.map((pokemon) => {
 			return (
 				<>
-					<li className='w-1/2'>
+					<li className='w-full md:w-1/2'>
 						<PokemonCard
 							pokemonName={pokemon.name}
 							pokemonType={pokemon.types}
@@ -93,7 +93,9 @@ class Home extends React.Component {
 			return (
 				<>
 					<li>
-						<button onClick={() => this.getTypePokemon(type.name)}>{type.name}</button>
+						<button className='hover:underline' onClick={() => this.getTypePokemon(type.name)}>
+							{type.name}
+						</button>
 					</li>
 				</>
 			)
@@ -101,12 +103,12 @@ class Home extends React.Component {
 
 		return (
 			<>
-				<div className='flex justify-around h-screen items-center p-8 gap-8 bg-gray-100'>
-					<section className='w-1/2 bg-white p-8 h-full'>
-						<ul>{typesList}</ul>
+				<div className='flex flex-col md:flex-row justify-around min-h-screen items-center p-8 gap-8 bg-gray-100'>
+					<section className='w-full md:w-1/2 bg-white p-8 h-screen items-center text-center'>
+						<ul className='mb-8'>{typesList}</ul>
 						<ul className='flex flex-wrap justify-between'>{pokemonList}</ul>
 					</section>
-					<section className='w-1/2 bg-white p-8 h-full'>
+					<section className='w-full md:w-1/2 bg-white p-8 h-screen flex justify-center items-center flex-col text-3xl font-bold'>
 						<CounterCard catchCount={this.state.catchCount} />
 					</section>
 				</div>

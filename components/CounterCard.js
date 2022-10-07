@@ -4,8 +4,8 @@
 function CounterCard({ catchCount }) {
 	return (
 		<>
-			<h2>Counter Card</h2>
-			<p>Catch Count: {catchCount}</p>
+			<h2 className='mb-4'>Pokemon Caught</h2>
+			<p className='text-5xl'>{catchCount}</p>
 		</>
 	)
 }
