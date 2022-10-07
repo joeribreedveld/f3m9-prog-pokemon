@@ -9,34 +9,52 @@ class Home extends React.Component {
 		super(props)
 		this.state = {
 			catchCount: 0,
+			pokemons: [],
 		}
 	}
 
-	updateCatchCounter = () => {
+	updateCatchCount = () => {
 		this.setState({
-			catchCounter: this.state.catchCounter + 1,
+			catchCount: this.state.catchCount + 1,
+		})
+	}
+
+	componentDidMount() {
+		this.fetchPokemons()
+	}
+
+	async fetchPokemons() {
+		const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+		const data = await res.json()
+		const pokemons = data.results
+
+		pokemons.forEach(async (pokemon) => {
+			const res = await fetch(pokemon.url)
+			const data = await res.json()
+			console.log(data.name)
+			this.setState({ pokemons: [...this.state.pokemons, data] })
 		})
 	}
 
 	render() {
-		let pokemon = null
-
-		for (let i = 0; i < 4; i++) {
-			const pokemonID = Math.floor(Math.random() * (21 - 1) + 1)
-			getPokemon(pokemonID)
-		}
-
-		async function getPokemon(pokemonID) {
-			const res = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonID)
-			const data = await res.json()
-			console.log(data.name)
-		}
+		const pokemonList = this.state.pokemons.map((pokemon) => {
+			return (
+				<>
+					<PokemonCard
+						pokemonName={pokemon.name}
+						pokemonType={pokemon.types}
+						pokemonImage={pokemon.sprites.front_default}
+						pokemonHP={pokemon.stats[0].base_stat}
+						updateCatchCounter={this.updateCatchCount}
+					/>
+				</>
+			)
+		})
 
 		return (
 			<>
-				<PokemonCard updateCatchCount={this.updateCatchCount} />
+				{pokemonList}
 				<CounterCard catchCount={this.state.catchCount} />
-				{pokemon}
 			</>
 		)
 	}

@@ -49,13 +49,13 @@ class PokemonCard extends React.Component {
 
 	// Render
 	render() {
-		// let types = this.props.pokemonType.map(function (type) {
-		// 	return (
-		// 		<span key={type} className={`pokemonCard__type pokemonCard__type--${type}`}>
-		// 			{type}
-		// 		</span>
-		// 	)
-		// })
+		let types = this.props.pokemonType.map(function (type) {
+			return (
+				<span key={type} className={`pokemonCard__type pokemonCard__type--${type}`}>
+					{type}
+				</span>
+			)
+		})
 		let buttons = null
 		if (this.state.caughtOrRan === false) {
 			buttons = (
