@@ -65,7 +65,7 @@ class PokemonCard extends React.Component {
 		if (this.state.caughtOrRan === false) {
 			buttons = (
 				<>
-					<ul className='flex gap-8 mt-4 lg:flex-row md:flex-col flex-row'>
+					<ul className='flex gap-6 sm:gap-4 lg:gap-6 mt-4 lg:flex-row md:flex-col flex-row'>
 						<li>
 							<button className='py-4 px-4 rounded-md bg-blue-100 hover:bg-blue-200 active:bg-blue-300' onClick={this.catch}>
 								Catch
