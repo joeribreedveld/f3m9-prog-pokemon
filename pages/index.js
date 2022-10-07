@@ -105,6 +105,8 @@ class Home extends React.Component {
 			<>
 				<div className='flex flex-col md:flex-row min-h-screen h-full p-8 gap-8 bg-gray-100'>
 					<section className='w-full md:w-1/2 bg-white p-8 h-full items-center text-center rounded-md'>
+						<h1 className='mb-8 text-3xl font-bold'>Reactomon</h1>
+						<h2 className='mb-6'>Select pokemon type:</h2>
 						<ul className='mb-16 flex flex-wrap gap-6'>{typesList}</ul>
 						<ul className='flex flex-wrap justify-between gap-y-16 items-center'>{pokemonList}</ul>
 					</section>
