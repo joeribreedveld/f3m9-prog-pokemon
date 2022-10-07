@@ -19,10 +19,24 @@ class Home extends React.Component {
 	}
 
 	render() {
+		let pokemon = null
+
+		for (let i = 0; i < 4; i++) {
+			const pokemonID = Math.floor(Math.random() * (21 - 1) + 1)
+			getPokemon(pokemonID)
+		}
+
+		async function getPokemon(pokemonID) {
+			const res = await fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonID)
+			const data = await res.json()
+			console.log(data.name)
+		}
+
 		return (
 			<>
 				<PokemonCard updateCatchCount={this.updateCatchCount} />
 				<CounterCard catchCount={this.state.catchCount} />
+				{pokemon}
 			</>
 		)
 	}
