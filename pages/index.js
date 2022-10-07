@@ -67,7 +67,7 @@ class Home extends React.Component {
 
 	componentDidMount() {}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.getPokemon()
 		this.getTypes()
 	}
