@@ -104,11 +104,11 @@ class Home extends React.Component {
 		return (
 			<>
 				<div className='flex flex-col md:flex-row justify-around min-h-screen items-center p-8 gap-8 bg-gray-100'>
-					<section className='w-full md:w-1/2 bg-white p-8 h-screen items-center text-center'>
+					<section className='w-full md:w-1/2 bg-white p-8 min-h-screen items-center text-center'>
 						<ul className='mb-8'>{typesList}</ul>
 						<ul className='flex flex-wrap justify-between'>{pokemonList}</ul>
 					</section>
-					<section className='w-full md:w-1/2 bg-white p-8 h-screen flex justify-center items-center flex-col text-3xl font-bold'>
+					<section className='w-full md:w-1/2 bg-white p-8 min-h-screen flex justify-center items-center flex-col text-3xl font-bold'>
 						<CounterCard catchCount={this.state.catchCount} />
 					</section>
 				</div>
