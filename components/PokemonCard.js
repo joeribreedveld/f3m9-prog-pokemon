@@ -9,6 +9,8 @@ class PokemonCard extends React.Component {
 		this.state = {
 			hp: 0,
 			caughtOrRan: false,
+			ran: false,
+			caught: false,
 		}
 	}
 
@@ -44,6 +46,9 @@ class PokemonCard extends React.Component {
 		let dice = Math.floor(Math.random() * (100 - 1) + 1)
 		if (damagePercentage > dice) {
 			this.props.updateCatchCounter()
+			this.setState({ caught: true })
+		} else {
+			this.setState({ ran: true })
 		}
 	}
 
@@ -62,13 +67,13 @@ class PokemonCard extends React.Component {
 				<>
 					<ul className='flex gap-8 mt-4 lg:flex-row md:flex-col flex-row'>
 						<li>
-							<button className='py-4 px-4 rounded-md bg-orange-100 hover:bg-orange-200 active:bg-orange-300' onClick={this.attack}>
-								Attack
+							<button className='py-4 px-4 rounded-md bg-blue-100 hover:bg-blue-200 active:bg-blue-300' onClick={this.catch}>
+								Catch
 							</button>
 						</li>
 						<li>
-							<button className='py-4 px-4 rounded-md bg-blue-100 hover:bg-blue-200 active:bg-blue-300' onClick={this.catch}>
-								Catch
+							<button className='py-4 px-4 rounded-md bg-orange-100 hover:bg-orange-200 active:bg-orange-300' onClick={this.attack}>
+								Attack
 							</button>
 						</li>
 					</ul>
@@ -81,7 +86,9 @@ class PokemonCard extends React.Component {
 				<article className='w-1/2 flex flex-col items-center justify-center'>
 					<h2 className='font-bold capitalize text-lg'>{this.props.pokemonName}</h2>
 					<img className='w-full h-full' src={this.props.pokemonImage} alt='' />
-					<p>Health: {this.state.hp}</p>
+					<p className='mb-4'>Health: {this.state.hp}</p>
+					{this.state.ran === true ? <p className='capitalize text-red-400'>{this.props.pokemonName} ran away!</p> : ""}
+					{this.state.caught === true ? <p className='text-green-400'>You caught a {this.props.pokemonName}!</p> : ""}
 					{buttons}
 				</article>
 			</>
