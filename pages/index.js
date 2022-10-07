@@ -42,6 +42,7 @@ class Home extends React.Component {
 		const res = await fetch("https://pokeapi.co/api/v2/type")
 		const data = await res.json()
 		const types = await data.results
+		types.length = 18
 		this.setState({ types: types })
 	}
 
@@ -56,8 +57,6 @@ class Home extends React.Component {
 		})
 
 		shuffledPokemons.length = 10
-
-		console.log(shuffledPokemons[0].pokemon.name)
 
 		for (let i = 0; i < 10; i++) {
 			const res = await fetch(shuffledPokemons[i].pokemon.url)
