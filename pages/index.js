@@ -19,25 +19,21 @@ class Home extends React.Component {
 		})
 	}
 
-	async componentDidMount() {
-		await this.fetchPokemons()
-	}
-
 	async componentWillMount() {
-		await this.fetchPokemons()
-	}
-
-	async fetchPokemons() {
 		const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
 		const data = await res.json()
 		const pokemons = await data.results
 
-		await pokemons.forEach(async (pokemon) => {
-			const res = await fetch(pokemon.url)
+		let shuffledPokemons = pokemons.sort(function () {
+			return Math.random() - 0.5
+		})
+
+		for (let i = 0; i < 10; i++) {
+			const res = await fetch(shuffledPokemons[i].url)
 			const data = await res.json()
 			console.log(data.name)
-			await this.setState({ pokemons: [...this.state.pokemons, data] })
-		})
+			this.setState({ pokemons: [...this.state.pokemons, data] })
+		}
 	}
 
 	render() {
