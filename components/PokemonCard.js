@@ -43,7 +43,7 @@ class PokemonCard extends React.Component {
 		let damagePercentage = 100 - Math.floor((this.state.hp / this.props.pokemonHP) * 100)
 		let dice = Math.floor(Math.random() * (100 - 1) + 1)
 		if (damagePercentage > dice) {
-			this.props.updateCounter()
+			this.props.updateCatchCounter()
 		}
 	}
 
