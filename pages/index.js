@@ -76,7 +76,7 @@ class Home extends React.Component {
 		const pokemonList = this.state.pokemons.map((pokemon) => {
 			return (
 				<>
-					<li className='w-full md:w-1/2'>
+					<li className='w-full md:w-1/2 flex flex-col items-center justify-center'>
 						<PokemonCard
 							pokemonName={pokemon.name}
 							pokemonType={pokemon.types}
@@ -92,8 +92,8 @@ class Home extends React.Component {
 		const typesList = this.state.types.map((type) => {
 			return (
 				<>
-					<li>
-						<button className='hover:underline' onClick={() => this.getTypePokemon(type.name)}>
+					<li className='py-3 px-5 bg-gray-100 flex-grow rounded-md'>
+						<button className='hover:underline capitalize' onClick={() => this.getTypePokemon(type.name)}>
 							{type.name}
 						</button>
 					</li>
@@ -103,12 +103,12 @@ class Home extends React.Component {
 
 		return (
 			<>
-				<div className='flex flex-col md:flex-row justify-around min-h-screen items-center p-8 gap-8 bg-gray-100'>
-					<section className='w-full md:w-1/2 bg-white p-8 min-h-screen items-center text-center'>
-						<ul className='mb-8'>{typesList}</ul>
-						<ul className='flex flex-wrap justify-between'>{pokemonList}</ul>
+				<div className='flex flex-col md:flex-row min-h-screen h-full p-8 gap-8 bg-gray-100'>
+					<section className='w-full md:w-1/2 bg-white p-8 h-full items-center text-center rounded-md'>
+						<ul className='mb-16 flex flex-wrap gap-6'>{typesList}</ul>
+						<ul className='flex flex-wrap justify-between gap-y-16 items-center'>{pokemonList}</ul>
 					</section>
-					<section className='w-full md:w-1/2 bg-white p-8 min-h-screen flex justify-center items-center flex-col text-3xl font-bold'>
+					<section className='w-full md:w-1/2 bg-white p-8 text-3xl font-bold rounded-md'>
 						<CounterCard catchCount={this.state.catchCount} />
 					</section>
 				</div>

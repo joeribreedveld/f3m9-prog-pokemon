@@ -60,22 +60,28 @@ class PokemonCard extends React.Component {
 		if (this.state.caughtOrRan === false) {
 			buttons = (
 				<>
-					<button onClick={this.attack} className=''>
-						Attack
-					</button>
-					<button onClick={this.catch} className=''>
-						Catch
-					</button>
+					<ul className='flex gap-8 mt-4 flex-col lg:flex-row'>
+						<li>
+							<button className='py-4 px-4 rounded-md bg-orange-100 hover:bg-orange-200 active:bg-orange-300' onClick={this.attack}>
+								Attack
+							</button>
+						</li>
+						<li>
+							<button className='py-4 px-4 rounded-md bg-blue-100 hover:bg-blue-200 active:bg-blue-300' onClick={this.catch}>
+								Catch
+							</button>
+						</li>
+					</ul>
 				</>
 			)
 		}
 
 		return (
 			<>
-				<article className='w-1/2'>
-					<h2>{this.props.pokemonName}</h2>
+				<article className='w-1/2 flex flex-col items-center justify-center'>
+					<h2 className='font-bold capitalize text-lg'>{this.props.pokemonName}</h2>
 					<img className='w-full h-full' src={this.props.pokemonImage} alt='' />
-					<p>{this.state.hp}</p>
+					<p>Health: {this.state.hp}</p>
 					{buttons}
 				</article>
 			</>
