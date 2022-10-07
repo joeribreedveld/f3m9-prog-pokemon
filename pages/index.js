@@ -11,6 +11,7 @@ class Home extends React.Component {
 			catchCount: 0,
 			pokemons: [],
 			types: [],
+			caughtList: [],
 		}
 	}
 
@@ -65,6 +66,10 @@ class Home extends React.Component {
 		}
 	}
 
+	setCaughtList = async (data) => {
+		await this.setState({ caughtList: [...this.state.caughtList, data] })
+	}
+
 	componentDidMount() {}
 
 	UNSAFE_componentWillMount() {
@@ -78,6 +83,7 @@ class Home extends React.Component {
 				<>
 					<li className='w-full md:w-1/2 flex flex-col items-center justify-center'>
 						<PokemonCard
+							setCaughtList={this.setCaughtList}
 							pokemonName={pokemon.name}
 							pokemonType={pokemon.types}
 							pokemonImage={pokemon.sprites.front_default}
@@ -111,7 +117,7 @@ class Home extends React.Component {
 						<ul className='flex flex-wrap justify-between gap-y-16 items-center'>{pokemonList}</ul>
 					</section>
 					<section className='w-full md:w-1/2 bg-white p-8 text-3xl font-bold rounded-md'>
-						<CounterCard catchCount={this.state.catchCount} />
+						<CounterCard catchCount={this.state.catchCount} caughtList={this.state.caughtList} />
 					</section>
 				</div>
 			</>

@@ -47,6 +47,8 @@ class PokemonCard extends React.Component {
 		if (damagePercentage > dice) {
 			this.props.updateCatchCounter()
 			this.setState({ caught: true })
+			const data = { image: this.props.pokemonImage, name: this.props.pokemonName }
+			this.props.setCaughtList(data)
 		} else {
 			this.setState({ ran: true })
 		}
@@ -54,13 +56,6 @@ class PokemonCard extends React.Component {
 
 	// Render
 	render() {
-		// let types = this.props.pokemonType.map(function (type) {
-		// 	return (
-		// 		<span key={type} className={`pokemonCard__type pokemonCard__type--${type}`}>
-		// 			{type}
-		// 		</span>
-		// 	)
-		// })
 		let buttons = null
 		if (this.state.caughtOrRan === false) {
 			buttons = (
