@@ -10,6 +10,7 @@ class Home extends React.Component {
 		this.state = {
 			catchCount: 0,
 			pokemons: [],
+			types: [],
 		}
 	}
 
@@ -19,7 +20,7 @@ class Home extends React.Component {
 		})
 	}
 
-	async componentWillMount() {
+	async getPokemon() {
 		const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
 		const data = await res.json()
 		const pokemons = await data.results
@@ -28,12 +29,48 @@ class Home extends React.Component {
 			return Math.random() - 0.5
 		})
 
+		shuffledPokemons.length = 10
+
 		for (let i = 0; i < 10; i++) {
 			const res = await fetch(shuffledPokemons[i].url)
 			const data = await res.json()
-			console.log(data.name)
 			this.setState({ pokemons: [...this.state.pokemons, data] })
 		}
+	}
+
+	async getTypes() {
+		const res = await fetch("https://pokeapi.co/api/v2/type")
+		const data = await res.json()
+		const types = await data.results
+		this.setState({ types: types })
+	}
+
+	async getTypePokemon(type) {
+		await this.setState({ pokemons: [] })
+		const res = await fetch("https://pokeapi.co/api/v2/type/" + type)
+		const data = await res.json()
+		const pokemons = await data.pokemon
+
+		let shuffledPokemons = pokemons.sort(function () {
+			return Math.random() - 0.5
+		})
+
+		shuffledPokemons.length = 10
+
+		console.log(shuffledPokemons[0].pokemon.name)
+
+		for (let i = 0; i < 10; i++) {
+			const res = await fetch(shuffledPokemons[i].pokemon.url)
+			const data = await res.json()
+			this.setState({ pokemons: [...this.state.pokemons, data] })
+		}
+	}
+
+	componentDidMount() {}
+
+	componentWillMount() {
+		this.getPokemon()
+		this.getTypes()
 	}
 
 	render() {
@@ -53,10 +90,21 @@ class Home extends React.Component {
 			)
 		})
 
+		const typesList = this.state.types.map((type) => {
+			return (
+				<>
+					<li>
+						<button onClick={() => this.getTypePokemon(type.name)}>{type.name}</button>
+					</li>
+				</>
+			)
+		})
+
 		return (
 			<>
 				<div className='flex justify-around h-screen items-center p-8 gap-8 bg-gray-100'>
 					<section className='w-1/2 bg-white p-8 h-full'>
+						<ul>{typesList}</ul>
 						<ul className='flex flex-wrap justify-between'>{pokemonList}</ul>
 					</section>
 					<section className='w-1/2 bg-white p-8 h-full'>
