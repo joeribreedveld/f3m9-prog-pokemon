@@ -92,7 +92,7 @@ class Home extends React.Component {
 		const typesList = this.state.types.map((type) => {
 			return (
 				<>
-					<li className='py-3 px-5 bg-gray-100 flex-grow rounded-md'>
+					<li className='py-3 px-5 bg-gray-100 flex-grow rounded-md hover:bg-gray-200 active:bg-gray-300'>
 						<button className='hover:underline capitalize' onClick={() => this.getTypePokemon(type.name)}>
 							{type.name}
 						</button>
