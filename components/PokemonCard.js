@@ -49,13 +49,13 @@ class PokemonCard extends React.Component {
 
 	// Render
 	render() {
-		let types = this.props.pokemonType.map(function (type) {
-			return (
-				<span key={type} className={`pokemonCard__type pokemonCard__type--${type}`}>
-					{type}
-				</span>
-			)
-		})
+		// let types = this.props.pokemonType.map(function (type) {
+		// 	return (
+		// 		<span key={type} className={`pokemonCard__type pokemonCard__type--${type}`}>
+		// 			{type}
+		// 		</span>
+		// 	)
+		// })
 		let buttons = null
 		if (this.state.caughtOrRan === false) {
 			buttons = (
@@ -72,7 +72,12 @@ class PokemonCard extends React.Component {
 
 		return (
 			<>
-				<h2>Pokemon Card</h2>
+				<article className='w-1/2'>
+					<h2>{this.props.pokemonName}</h2>
+					<img className='w-full h-full' src={this.props.pokemonImage} alt='' />
+					<p>{this.state.hp}</p>
+					{buttons}
+				</article>
 			</>
 		)
 	}
