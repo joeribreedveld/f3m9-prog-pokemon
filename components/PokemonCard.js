@@ -80,7 +80,7 @@ class PokemonCard extends React.Component {
 			<>
 				<article className='w-1/2 flex flex-col items-center justify-center'>
 					<h2 className='font-bold capitalize text-lg'>{this.props.pokemonName}</h2>
-					<img className='w-full h-full' src={this.props.pokemonImage} alt='' />
+					{this.props.pokemonImage ? <img className='w-full h-full' src={this.props.pokemonImage} alt='Pokemon image' /> : <p className='text-red-400'>No image found</p>}
 					<p className='mb-4'>Health: {this.state.hp}</p>
 					{this.state.ran === true ? <p className='capitalize text-red-400'>{this.props.pokemonName} ran away!</p> : ""}
 					{this.state.caught === true ? <p className='text-green-400'>You caught a {this.props.pokemonName}!</p> : ""}

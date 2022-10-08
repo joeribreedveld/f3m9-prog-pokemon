@@ -14,7 +14,7 @@ function CounterCard({ catchCount, caughtList }) {
 	})
 	return (
 		<>
-			<article className='h-screen flex flex-col items-center justify-center text-center'>
+			<article className='min-h-screen flex flex-col items-center justify-center text-center'>
 				<h2 className='mb-4'>Pokemon Caught</h2>
 				<p className='text-5xl mb-16'>{catchCount}</p>
 				<ul className='flex flex-wrap justify-center items-center gap-8'>{pokemonList}</ul>
